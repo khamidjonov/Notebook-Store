@@ -1,0 +1,36 @@
+<h1>Edit {{notebook.title}}</h1>
+
+<form action="/notebooks/edit" method="post" class="z-depth-2 f_control">
+  <div class="input-field">
+    <input id="title" name="title" type="text" class="validate" value="{{notebook.title}}" required>
+    <label for="title">Model</label>
+    <span class="helper-text" data-error="Enter valid title"></span>
+  </div>
+
+  <div class="input-field">
+    <input id="price" name="price" type="number" class="validate" min="1" value="{{notebook.price}}" required>
+    <label for="price">Price</label>
+    <span class="helper-text" data-error="Enter valid price"></span>
+  </div>
+
+  <div class="input-field">
+    <input id="description" type="text" name="description" class="validate" value="{{notebook.description}}" />
+    <label for="description">Description</label>
+    <span class="helper-text" data-error="Enter valid description"></span>
+  </div>
+
+  <div class="input-field">
+    <input id="img" name="img" type="text" class="validate" value="{{notebook.img}}" required>
+    <label for="img">Image</label>
+    <span class="helper-text" data-error="Enter valid image"></span>
+  </div>
+
+  <input type="hidden" name="id" value="{{notebook.id}}"> {{!-- Yashirin, ekranda ko'rsatilmaydigan input yaratish --}}
+
+  <button type="submit" class="btn btn-secondary">Edit notebook</button>
+</form>
+
+<form action="/notebooks/remove" method="POST">
+  <input type="hidden" name="id" value="{{notebook.id}}">
+  <button class="btn red" style="margin-top: 1rem">Remove notebook</button>
+</form>

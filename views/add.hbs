@@ -1,0 +1,59 @@
+<h1>Add new notebook</h1>
+{{#if error}}
+  <p class='alert'>{{error}}</p>
+{{/if}}
+<form action='/add' method='post' class='z-depth-2 f_control' novalidate>
+  <div class='input-field'>
+    <input
+      id='title'
+      name='title'
+      type='text'
+      class='validate'
+      value='{{data.title}}'
+      required
+    />
+    <label for='title'>Model</label>
+    <span class='helper-text' data-error='Enter valid title'></span>
+  </div>
+
+  <div class='input-field'>
+    <input
+      id='price'
+      name='price'
+      type='number'
+      class='validate'
+      min='1'
+      value='{{data.price}}'
+      required
+    />
+    <label for='price'>Price</label>
+    <span class='helper-text' data-error='Enter valid price'></span>
+  </div>
+
+  <div class='input-field'>
+    <input
+      type='text'
+      id='description'
+      name='description'
+      class='materialize-textarea validate'
+      value='{{data.description}}'
+    />
+    <label for='description'>Description</label>
+    <span class='helper-text' data-error='Enter valid description'></span>
+  </div>
+
+  <div class='input-field'>
+    <input
+      id='img'
+      name='img'
+      type='text'
+      class='validate'
+      value='{{data.img}}'
+      required
+    />
+    <label for='img'>Image</label>
+    <span class='helper-text' data-error='Enter valid image'></span>
+  </div>
+
+  <button type='submit' class='btn btn-primary'>Add notebook</button>
+</form>
