@@ -17,7 +17,7 @@
               {{!  root.isAuth global miqyosdagi o'zgaruvchini olish u-n ishlatiladi, oddiy holatda iteratsiya bo'layotgani uchun notebooks ni ichidagi qiymatlarndan oladi  }}
               {{#if @root.isAuth}}
                 {{! Bu nesting bo'layotgani u-n alohida f-ya sifatida yozildi }}
-                {{#ifeq userId._id @root.isAuth}}
+                {{#ifeq userId._id @root.userId}}
                   <a href='/notebooks/{{id}}/edit?allow=true'>Edit</a>
                 {{/ifeq}}
                 <form action='/card/add' method='post'>

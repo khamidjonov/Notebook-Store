@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const Handlebars = require('handlebars');
+// Ba'zi narsalarga access beish u-n ishlatiladi
 const {
   allowInsecurePrototypeAccess,
 } = require('@handlebars/allow-prototype-access');
@@ -67,18 +68,6 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
-
-// Find a user
-// app.use(async (req, res, next) => {
-//   try {
-//     // Request ga yangi user nomli xossa yaratadi (req.body kabi) va uni qiymatini user ga tenglashtiradi
-//     const user = await User.findById('635d0e376016f8459cc1783c');
-//     req.user = user;
-//     next();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
 // SET Public folder
 app.use(express.static(path.join(__dirname, 'public')));

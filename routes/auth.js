@@ -1,9 +1,9 @@
 // Required libs
 const { Router } = require('express');
 const router = Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 // Validatorni kerakli methodlarini chaqirish
-const { body, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 
 // Export Validator from utils
 const { registerValidators } = require('../utils/validators');
@@ -11,7 +11,7 @@ const { registerValidators } = require('../utils/validators');
 // Import Model
 const User = require('../models/User');
 
-router.get('/login', (req, res) => {
+router.get('/login', async (req, res) => {
   // view ni ichidagi auth papkadagi login.hbs faylini render qiladi
   res.render('auth/login', {
     title: 'Register',
@@ -22,33 +22,28 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', async (req, res) => {
   // Sessiondagi datani o'chirish va redirect qilish
   req.session.destroy(() => {
     res.redirect('/auth/login#login');
   });
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async function (req, res) {
   try {
     const { email, password } = req.body;
-
-    const candidate = User.findOne({ email });
+    const candidate = await User.findOne({ email });
 
     if (candidate) {
       // Password ni 'bcrypt' orqali tekshirish
       const samePass = bcrypt.compare(password, candidate.password);
-
       if (samePass) {
         // Session ga yangi user nomli o'zgaruvchi ochish va qiymatini yuqoridagi userga tenglash
         req.session.user = candidate;
-
         req.session.isAuthenticated = true;
-
         // Sessionning yangi qiymatlarini saqlash
         req.session.save((err) => {
           if (err) throw err;
-
           // Redirect xatolardan qochish uchun save ni ichida yoziladi
           res.redirect('/');
         });

@@ -8,7 +8,7 @@
         <h1 style='color: #222;'>{{user.name}}</h1>
         <hr />
 
-        {{#if}}
+        {{#if user.avatarUrl}}
           <img src='/{{user.avatarUrl}}' alt='avatar-{{user.name}}' />
         {{else}}
           <p>No photo</p>

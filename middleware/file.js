@@ -3,7 +3,7 @@ const multer = require('multer');
 // Fileni qayerga va qanday holatda saqlash
 const storage = multer.diskStorage({
   destination(req, file, callback) {
-    callback(null, images);
+    callback(null, 'images');
   },
   filename(req, file, callback) {
     // File ni unique nom b-n saqlash uchun oldiga sanani qo'yiladi

@@ -45,7 +45,6 @@ router.post('/', authMiddleware, async (req, res) => {
   });
 
   try {
-    console.log(req.user._id);
     await notebook.save();
     res.redirect('/notebooks');
   } catch (e) {
